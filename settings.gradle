@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "CaseStudy"
 include ':app'
 include ':feature-name'
+include ':core'

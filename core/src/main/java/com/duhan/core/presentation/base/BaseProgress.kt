@@ -1,11 +1,11 @@
-package com.duhan.scorp_case_study.presentation.base
+package com.duhan.core.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.duhan.scorp_case_study.R
+import com.duhan.core.R
 
 class BaseProgress : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {

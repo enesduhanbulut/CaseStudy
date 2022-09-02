@@ -1,4 +1,4 @@
-package com.duhan.scorp_case_study.presentation.base
+package com.duhan.core.presentation.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
