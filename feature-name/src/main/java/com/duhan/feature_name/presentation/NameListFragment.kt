@@ -1,32 +1,32 @@
 package com.duhan.feature_name.presentation
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.duhan.core.presentation.base.BaseFragment
 import com.duhan.feature_name.R
+import com.duhan.feature_name.databinding.FragmentNameListBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
-class NameListFragment : Fragment() {
+@AndroidEntryPoint
+class NameListFragment : BaseFragment<FragmentNameListBinding, NameListViewModel>() {
+    override val layoutId: Int
+        get() = R.layout.fragment_name_list
+    private val viewModel: NameListViewModel by viewModels()
 
-    companion object {
-        fun newInstance() = NameListFragment()
+    override fun getVM(): NameListViewModel {
+        return viewModel
     }
 
-    private lateinit var viewModel: NameListViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_name_list, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NameListViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun bindVM(binding: FragmentNameListBinding, vm: NameListViewModel) {
+        with(binding) {
+            lifecycleScope.launchWhenCreated {
+                adapter = ListAdapter()
+                viewModel.namesFlow.collectLatest {
+                    adapter?.submitData(it)
+                }
+            }
+        }
     }
 
 }
