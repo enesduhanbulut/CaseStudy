@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="person"
-            type="com.duhan.feature_name.data.nameservice.Person" />
+            name="item"
+            type="com.duhan.feature_name.domain.Item" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp">
+        android:layout_height="30dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingStart="20dp"
-                android:text="@{person.fullName}"
-                tools:text="Duhan" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:text="@{@string/list_item_format(item.fullName.trim(), item.id)}"
+            tools:text="Duhan" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

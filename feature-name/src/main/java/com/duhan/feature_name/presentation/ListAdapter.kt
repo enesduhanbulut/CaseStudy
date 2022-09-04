@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.duhan.feature_name.data.nameservice.Person
 import com.duhan.feature_name.databinding.ListItemBinding
+import com.duhan.feature_name.domain.Item
 
 
 class ListAdapter :
-    PagingDataAdapter<Person, ListAdapter.ViewHolder>(
+    PagingDataAdapter<Item, ListAdapter.ViewHolder>(
         diffCallback
     ) {
 
@@ -20,19 +20,19 @@ class ListAdapter :
 
     inner class ViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Person) {
-            binding.person = item
+        fun bind(item: Item) {
+            binding.item = item
             binding.executePendingBindings()
         }
     }
 
     companion object {
 
-        private val diffCallback = object : DiffUtil.ItemCallback<Person>() {
-            override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean =
+        private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
+            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Person, newItem: Person): Boolean =
+            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean =
                 oldItem.fullName == newItem.fullName
         }
     }

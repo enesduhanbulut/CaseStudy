@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">feature-name</string>
+    <string name="list_item_format">%s (%d)</string>
 </resources>

@@ -2,10 +2,10 @@
 buildscript {
     ext {
         hilt_version = "2.42"
-        coroutine_version="1.6.0"
-        room_version="2.4.1"
-        paging_version= "3.1.1"
-        lifecycle_version= "2.5.1"
+        coroutine_version = "1.6.0"
+        room_version = "2.4.1"
+        paging_version = "3.1.1"
+        lifecycle_version = "2.5.1"
         navigation_version = "2.5.1"
     }
 

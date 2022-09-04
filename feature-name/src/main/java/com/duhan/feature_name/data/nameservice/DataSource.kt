@@ -68,7 +68,6 @@ class DataSource {
         var error: FetchError? = null
         var response: FetchResponse? = null
         var isError = RandomUtils.roll(probability = Constants.errorProbability)
-        //isError = false
         val waitTime: Double
         if (isError) {
             waitTime = RandomUtils.generateRandomDouble(range = Constants.lowWaitTimeRange)

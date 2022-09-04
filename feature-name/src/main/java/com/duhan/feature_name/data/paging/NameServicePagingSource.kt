@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.duhan.feature_name.data.nameservice.DataSource
 import com.duhan.feature_name.data.nameservice.FetchResponse
-import com.duhan.feature_name.data.nameservice.Person
+import com.duhan.feature_name.domain.Item
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -12,22 +12,25 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.launch
 
 class NameServicePagingSource(private val nameService: DataSource) :
-    PagingSource<Int, Person>() {
+    PagingSource<Int, Item>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Person>): Int = 1
+    override fun getRefreshKey(state: PagingState<Int, Item>): Int = 1
 
     @OptIn(ObsoleteCoroutinesApi::class)
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Person> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> {
         return try {
             val pageNumber = params.key ?: 1
+            val itemList = mutableListOf<Item>()
             val fetchResponse = nameService.fetchAsFlow(pageNumber).openSubscription().receive()
-
+            fetchResponse.people.forEach {
+                itemList.add(Item(it.fullName.trim(), it.id))
+            }
             var nextPageNumber: Int? = null
             if (fetchResponse.next != null) {
                 nextPageNumber = fetchResponse.next.toInt()
             }
             LoadResult.Page(
-                data = fetchResponse.people,
+                data = itemList,
                 prevKey = null,
                 nextKey = nextPageNumber
             )
