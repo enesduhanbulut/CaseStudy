@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.duhan.scorp_case_study"
+        applicationId "com.duhan.mypromises"
         minSdk 22
         targetSdk 33
         versionCode 1
@@ -62,5 +62,9 @@ dependencies {
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
 }

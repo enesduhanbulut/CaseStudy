@@ -1,4 +1,4 @@
-package com.duhan.scorp_case_study.app
+package com.duhan.mypromises.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

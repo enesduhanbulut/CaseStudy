@@ -1,4 +1,4 @@
-package com.duhan.scorp_case_study
+package com.duhan.mypromises
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
